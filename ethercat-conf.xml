@@ -1,0 +1,46 @@
+<masters>
+<master idx="0" appTimePeriod="1000000" refClockSyncCycles="5">
+<slave idx="0" type="EK1100"/>
+<slave idx="1" type="EL1018"/>
+<slave idx="2" type="EL2008"/>
+<!-- Sanyo Denki SANMOTION R AC Servo -->
+<!-- https://www.sanyodenki.com/global/america/file/SANMOTION_R_3E_EtherCAT_Servo_M0011697C.pdf -->
+<!-- Page 110: Vendor ID = 0x000001B9, Product ID = 0x0000000B -->
+<slave idx="3" type="generic" vid="000001B9" pid="0000000B" configPdos="true">
+    <dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0" />
+    <!--
+    <sdoConfig idx="2011" subIdx="0">
+    <sdoDataRaw data="01 00" />
+    </sdoConfig>
+    -->
+    <syncManager idx="0" dir="out">
+	<!-- Page 124: Reception PDO Mapping 1 -->
+	<pdo idx="1600">
+	    <!-- Page 134: Control Word -->
+	    <pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="cia-controlword" halType="u32" />
+	    <!-- Page 140: Operation Mode -->
+	    <pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="opmode" halType="s32" />
+	    <!-- Page 144: Target Position -->
+	    <pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32" />
+	    <!-- Page 160: Target Velocity -->
+	    <pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32" />
+	</pdo>
+    </syncManager>
+    <syncManager idx="1" dir="in">
+	<!-- Page 125: TxPDO Mapping 1 (TxPDO 1) -->
+	<pdo idx="1a00">
+	    <!-- Page 136: Status Word -->
+	    <pdoEntry idx="6041" subIdx="00" bitLen="16" halPin="cia-statusword" halType="u32" />
+	    <!-- Page 140: Operation Mode Display -->
+	    <pdoEntry idx="6061" subIdx="00" bitLen="8" halPin="opmode-display" halType="s32" />
+	    <!-- Page 141: Position Actual Value -->
+	    <pdoEntry idx="6064" subIdx="00" bitLen="32" halPin="actual-position" halType="s32" />
+	    <!-- Page 142: Velocity Actual Value -->
+	    <pdoEntry idx="606C" subIdx="00" bitLen="32" halPin="actual-velocity" halType="s32" />
+	    <!-- Page 144: Actual Torque (force) Value -->
+	    <pdoEntry idx="6077" subIdx="00" bitLen="32" halPin="actual-torque" halType="s32" />
+	</pdo>
+    </syncManager>
+</slave>
+</master>
+</masters>
