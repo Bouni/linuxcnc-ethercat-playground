@@ -50,19 +50,3 @@ net x-modes-of-operation  cia402.0.opmode              => lcec.0.3.opmode
 net x-drv-target-pos      cia402.0.drv-target-position => lcec.0.3.target-position
 net x-drv-target-velo     cia402.0.drv-target-velocity => lcec.0.3.target-velocity
 
-#*******************
-#  AXIS Y -- Omron G5 EtherCat
-#*******************
-
-# --- joint signals for motion
-
-net y-pos-cmd    <= joint.1.motor-pos-cmd
-net y-vel-cmd    <= joint.1.vel-cmd
-net y-pos-fb     <= joint.1.motor-pos-fb
-net y-enable     <= joint.1.amp-enable-out
-
-# --- connect drive to joint
-
-net y-pos-cmd    => lcec.0.4.pos-cmd
-net y-pos-fb     => lcec.0.4.pos-fb
-net y-enable     => lcec.0.4.enable 

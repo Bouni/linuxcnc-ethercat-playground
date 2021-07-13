@@ -23,9 +23,5 @@
 				</pdo>
 			</syncManager>
 		</slave>
- 		<slave idx="4" type="R88D-KN01H-ECT">
-			<dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0"/>
-			<watchdog divider="2498" intervals="1000"/>
-		</slave>
 	</master>
 </masters>
